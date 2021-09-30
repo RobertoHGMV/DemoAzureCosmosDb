@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoAzureCosmosDb.Infra", "src\DemoAzureCosmosDb.Infra\DemoAzureCosmosDb.Infra.csproj", "{3856FCED-9A61-4FCD-8DB9-B8A4F483E59B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoAzureCosmosDb.Domain", "src\DemoAzureCosmosDb.Domain\DemoAzureCosmosDb.Domain.csproj", "{64DE18C6-F274-4A54-A39F-20BC6D02E5CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoAzureCosmosDb.Api", "src\DemoAzureCosmosDb.Api\DemoAzureCosmosDb.Api.csproj", "{1974C3A1-58DF-4ED7-8FC5-349D051D9A6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3856FCED-9A61-4FCD-8DB9-B8A4F483E59B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3856FCED-9A61-4FCD-8DB9-B8A4F483E59B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3856FCED-9A61-4FCD-8DB9-B8A4F483E59B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3856FCED-9A61-4FCD-8DB9-B8A4F483E59B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64DE18C6-F274-4A54-A39F-20BC6D02E5CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64DE18C6-F274-4A54-A39F-20BC6D02E5CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64DE18C6-F274-4A54-A39F-20BC6D02E5CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64DE18C6-F274-4A54-A39F-20BC6D02E5CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1974C3A1-58DF-4ED7-8FC5-349D051D9A6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1974C3A1-58DF-4ED7-8FC5-349D051D9A6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1974C3A1-58DF-4ED7-8FC5-349D051D9A6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1974C3A1-58DF-4ED7-8FC5-349D051D9A6F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5325B84-F342-428E-AFD7-7B513BFA78CA}
+	EndGlobalSection
+EndGlobal
