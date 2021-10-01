@@ -1,12 +1,9 @@
-﻿using DemoAzureCosmosDb.Domain.Configurations;
-using DemoAzureCosmosDb.Domain.Models;
+﻿using DemoAzureCosmosDb.Domain.Models;
 using DemoAzureCosmosDb.Domain.Repositories;
 using DemoAzureCosmosDb.Infra.Contexts;
 using Microsoft.Azure.Cosmos;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DemoAzureCosmosDb.Infra.Repositories
@@ -20,14 +17,32 @@ namespace DemoAzureCosmosDb.Infra.Repositories
             _container = cosmosDbClient.Container;
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(string query)
+        public async Task<IEnumerable<Item>> GetItemsAsync(string queryString)
         {
-            throw new NotImplementedException();
+            var query = _container.GetItemQueryIterator<Item>(new QueryDefinition(queryString));
+            var results = new List<Item>();
+
+            while (query.HasMoreResults)
+            {
+                var response = await query.ReadNextAsync();
+
+                results.AddRange(response.ToList());
+            }
+
+            return results;
         }
 
         public async Task<Item> GetItemAsync(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ItemResponse<Item> response = await _container.ReadItemAsync<Item>(id, new PartitionKey(id));
+                return response.Resource;
+            }
+            catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return null;
+            }
         }
 
         public async Task AddItemAsync(Item item)
@@ -37,12 +52,12 @@ namespace DemoAzureCosmosDb.Infra.Repositories
 
         public async Task UpdateItemAsync(string id, Item item)
         {
-            throw new NotImplementedException();
+            await _container.UpsertItemAsync(item, new PartitionKey(id));
         }
 
         public async Task DeleteItemAsync(string id)
         {
-            throw new NotImplementedException();
+            await _container.DeleteItemAsync<Item>(id, new PartitionKey(id));
         }
     }
 }

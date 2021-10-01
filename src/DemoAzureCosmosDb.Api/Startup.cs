@@ -1,5 +1,7 @@
 using DemoAzureCosmosDb.Domain.Configurations;
+using DemoAzureCosmosDb.Domain.Repositories;
 using DemoAzureCosmosDb.Infra.Contexts;
+using DemoAzureCosmosDb.Infra.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,6 +39,7 @@ namespace DemoAzureCosmosDb.Api
             });
 
             services.AddScoped<CosmosDbClient, CosmosDbClient>();
+            services.AddTransient<IItemRepository, ItemRepository>();
 
             InitializeCosmosClientInstanceAsync(Configuration.GetSection("CosmosConfig"));
         }
