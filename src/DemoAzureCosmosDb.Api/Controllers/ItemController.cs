@@ -12,7 +12,7 @@ namespace DemoAzureCosmosDb.Api.Controllers
     [Route("api/v1/[controller]")]
     public class ItemController : Controller
     {
-        IItemRepository _itemRepository;
+        readonly IItemRepository _itemRepository;
 
         public ItemController(IItemRepository itemRepository)
         {
@@ -20,12 +20,13 @@ namespace DemoAzureCosmosDb.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok(await _itemRepository.GetItemsAsync("SELECT * FROM c"));
+            return Ok(await _itemRepository.GetItemsAsync());
         }
 
         [HttpGet]
+        [Route("{id}")]
         public async Task<IActionResult> DetailsAsync(string id)
         {
             return Ok(await _itemRepository.GetItemAsync(id));
@@ -39,7 +40,7 @@ namespace DemoAzureCosmosDb.Api.Controllers
                 item.Id = Guid.NewGuid().ToString();
                 await _itemRepository.AddItemAsync(item);
 
-                return Ok();
+                return Ok(item);
             }
 
             return View(item);
@@ -51,14 +52,14 @@ namespace DemoAzureCosmosDb.Api.Controllers
             if (ModelState.IsValid)
             {
                 await _itemRepository.UpdateItemAsync(item.Id, item);
-                return Ok();
+                return Ok(item);
             }
 
             return View(item);
         }
 
         [HttpDelete]
-        [Route("{string:id}")]
+        [Route("{id}")]
         public async Task<IActionResult> DeleteConfirmedAsync(string id)
         {
             await _itemRepository.DeleteItemAsync(id);

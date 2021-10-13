@@ -2,9 +2,9 @@
 {
     public class CosmosConfig
     {
-        public string Account { get; set; }
-        public string Key { get; set; }
-        public string DatabaseName { get; set; }
-        public string ContainerName { get; set; }
+        public string EndpointUri { get; set; }
+        public string PrimaryKey { get; set; }
+        public string DatabaseId { get; set; }
+        public string containerId { get; set; }
     }
 }

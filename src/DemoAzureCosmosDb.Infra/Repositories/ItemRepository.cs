@@ -10,15 +10,17 @@ namespace DemoAzureCosmosDb.Infra.Repositories
 {
     public class ItemRepository : IItemRepository
     {
+        public const string ContainerName = "Item";
         public readonly Container _container;
 
         public ItemRepository(CosmosDbClient cosmosDbClient)
         {
-            _container = cosmosDbClient.Container;
+            _container = cosmosDbClient.CosmosClient.GetContainer(cosmosDbClient.DatabaseId, ContainerName);
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(string queryString)
+        public async Task<IEnumerable<Item>> GetItemsAsync()
         {
+            var queryString = "SELECT * FROM Item";
             var query = _container.GetItemQueryIterator<Item>(new QueryDefinition(queryString));
             var results = new List<Item>();
 

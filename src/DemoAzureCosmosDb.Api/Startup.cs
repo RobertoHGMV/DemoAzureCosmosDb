@@ -68,14 +68,13 @@ namespace DemoAzureCosmosDb.Api
 
         private async Task InitializeCosmosClientInstanceAsync(IConfigurationSection configurationSection)
         {
-            string databaseName = configurationSection.GetSection("DatabaseName").Value;
-            string containerName = configurationSection.GetSection("ContainerName").Value;
-            string account = configurationSection.GetSection("Account").Value;
-            string key = configurationSection.GetSection("Key").Value;
+            string databaseName = configurationSection.GetSection("DatabaseId").Value;
+            string account = configurationSection.GetSection("EndpointUri").Value;
+            string key = configurationSection.GetSection("PrimaryKey").Value;
             var client = new Microsoft.Azure.Cosmos.CosmosClient(account, key);
             
             Microsoft.Azure.Cosmos.DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
-            await database.Database.CreateContainerIfNotExistsAsync(containerName, "/id");
+            await database.Database.CreateContainerIfNotExistsAsync(ItemRepository.ContainerName, "/Id");
         }
     }
 }

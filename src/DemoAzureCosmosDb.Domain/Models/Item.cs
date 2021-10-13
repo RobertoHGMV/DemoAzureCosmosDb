@@ -20,7 +20,8 @@ namespace DemoAzureCosmosDb.Domain.Models
 
         //[JsonProperty(PropertyName = "isComplete")]
         //public bool Completed { get; set; }
-        
+
+        [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

@@ -6,7 +6,7 @@ namespace DemoAzureCosmosDb.Domain.Repositories
 {
     public interface IItemRepository
     {
-        Task<IEnumerable<Item>> GetItemsAsync(string queryString);
+        Task<IEnumerable<Item>> GetItemsAsync();
         Task<Item> GetItemAsync(string id);
         Task AddItemAsync(Item item);
         Task UpdateItemAsync(string id, Item item);
